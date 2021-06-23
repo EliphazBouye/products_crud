@@ -5,6 +5,7 @@ require 'Connect.php';
 class ManagerData
 {
     private $pdo;
+    public $message;
 
     public function __construct()
     {
@@ -18,5 +19,15 @@ class ManagerData
         $stmt->execute();
 
         return $stmt->fetchAll();
+    }
+
+    public function addOne(string $title,string $price)
+    {
+        $query = "INSERT INTO products (title, price) VALUES (:title, :price)";
+        $stmt = $this->pdo->prepare($query);
+        if($stmt->execute([':title' => $title, ':price' => $price])){
+            $this->message = "Data inserted successful";
+        }
+
     }
 }

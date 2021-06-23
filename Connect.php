@@ -14,11 +14,11 @@ class Connect
     public function __construct()
     {
         $dsn = "mysql:host={$this->config['host']};dbname={$this->config['dbname']}";
-
+        $options = [];
         try {
             if($this->pdo == null)
             {
-                $this->pdo = new PDO($dsn, $this->config['user'], $this->config['password']);
+                $this->pdo = new PDO($dsn, $this->config['user'], $this->config['password'], $options);
             }
         }catch (PDOException $e) {
             throw new ErrorException("Error : ".$e->getMessage());
