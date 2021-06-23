@@ -12,6 +12,7 @@ class ManagerData
         $this->pdo = (new Connect())->getPdo();
     }
 
+
     public function findAll()
     {
         $query = "SELECT * FROM products ORDER BY id DESC";
@@ -26,7 +27,7 @@ class ManagerData
         $query = "INSERT INTO products (title, price) VALUES (:title, :price)";
         $stmt = $this->pdo->prepare($query);
         if($stmt->execute([':title' => $title, ':price' => $price])){
-            $this->message = "Data inserted successful";
+            $this->message = "Product added";
         }
 
     }
@@ -49,7 +50,6 @@ class ManagerData
             $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
             $extra = 'index.php';
             header("Location: http://$host$uri/$extra");
-            $this->message = "Update successfully";
         }
 
     }
@@ -64,10 +64,7 @@ class ManagerData
             $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
             $extra = 'index.php';
             header("Location: http://$host$uri/$extra");
-            $this->message = "Product deleted";
         }
-
-
     }
 
 }

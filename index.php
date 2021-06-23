@@ -3,26 +3,16 @@
 <?php
 
 require 'ManagerData.php';
-$messageSuccess = null;
 $data = (new ManagerData());
 $allProducts = $data->findAll();
-$messageSuccess = $data->message;
 
 
 ?>
 
-
-
-
-            <div class="card">
+        <div class="card">
                 <div class="card-header">
                     <h3>List of products</h3>
                 </div>
-                <?php
-                if ($messageSuccess !== null) {
-                    echo "<div class='alert alert-danger' role='alert'>". $messageSuccess . "</div>";
-                }
-                ?>
                 <div class="card-body">
                     <table class="table">
                         <thead>
@@ -50,7 +40,7 @@ $messageSuccess = $data->message;
                         </tbody>
                     </table>
                 </div>
-            </div>
+        </div>
 
 
 

@@ -2,7 +2,6 @@
 <?php require 'ManagerData.php'?>
 
 <?php
-    $messageSuccess = null;
     $id = $_GET['id'];
     $product = (new ManagerData())->getOne($id);
     if(isset($_POST['title']) && isset($_POST['price'])) {
@@ -11,7 +10,6 @@
 
         $data = new ManagerData();
         $data->updateOne($title,$price,$id);
-        $messageSuccess = $data->message;
     }
 ?>
 
@@ -22,14 +20,6 @@
         <div class="card">
             <div class="card-header">
                 <h2>Edit Product</h2>
-
-                <?php
-                if ($messageSuccess !== null) {
-                    echo "<div class='alert alert-success' role='alert'>". $messageSuccess . "</div>";
-                }
-                ?>
-
-
             </div>
             <div class="cart-body">
                 <form method="post" action="">
