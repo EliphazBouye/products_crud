@@ -14,7 +14,7 @@ class ManagerData
 
     public function findAll()
     {
-        $query = sprintf("SELECT * FROM %s", 'products');
+        $query = "SELECT * FROM products ORDER BY id DESC";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
 
@@ -51,6 +51,22 @@ class ManagerData
             header("Location: http://$host$uri/$extra");
             $this->message = "Update successfully";
         }
+
+    }
+
+    public function deleteOne(int $id)
+    {
+        $query = "DELETE FROM products WHERE id=:id";
+        $statement = $this->pdo->prepare($query);
+        if($statement->execute(['id' => $id]))
+        {
+            $host  = $_SERVER['HTTP_HOST'];
+            $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+            $extra = 'index.php';
+            header("Location: http://$host$uri/$extra");
+            $this->message = "Product deleted";
+        }
+
 
     }
 

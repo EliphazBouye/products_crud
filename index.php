@@ -3,8 +3,12 @@
 <?php
 
 require 'ManagerData.php';
+$messageSuccess = null;
+$data = (new ManagerData());
+$allProducts = $data->findAll();
+$messageSuccess = $data->message;
 
-$allProducts = (new ManagerData())->findAll();
+
 ?>
 
 
@@ -14,6 +18,11 @@ $allProducts = (new ManagerData())->findAll();
                 <div class="card-header">
                     <h3>List of products</h3>
                 </div>
+                <?php
+                if ($messageSuccess !== null) {
+                    echo "<div class='alert alert-danger' role='alert'>". $messageSuccess . "</div>";
+                }
+                ?>
                 <div class="card-body">
                     <table class="table">
                         <thead>
@@ -29,7 +38,7 @@ $allProducts = (new ManagerData())->findAll();
                             <tr>
                                 <th scope="row"><?= $product->id;?></th>
                                 <td><?= $product->title;?></td>
-                                <td><?= $product->price;?></td>
+                                <td><?= $product->price;?> Fcfa</td>
                                 <th>
                                     <a href="edit.php?id=<?= $product->id; ?>" class="btn btn-info">Edit</a>
                                 </th>
