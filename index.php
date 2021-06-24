@@ -1,8 +1,10 @@
-<?php include 'header.php'?>
+<?php
+include 'header.php';
+require 'ManagerData.php';
+
+?>
 
 <?php
-
-require 'ManagerData.php';
 $data = (new ManagerData());
 $allProducts = $data->findAll();
 

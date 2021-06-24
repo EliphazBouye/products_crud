@@ -19,6 +19,7 @@ class Connect
             if($this->pdo == null)
             {
                 $this->pdo = new PDO($dsn, $this->config['user'], $this->config['password'], $options);
+                $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
         }catch (PDOException $e) {
             throw new ErrorException("Error : ".$e->getMessage());
