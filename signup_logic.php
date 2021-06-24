@@ -20,7 +20,7 @@ if(isset($_POST['pseudo']) && isset($_POST['email']) && isset($_POST['password']
 
 if($row === 0){
     if ($pseudo <= 100){
-        if($email <= 100){
+        if(filter_var($email, FILTER_VALIDATE_EMAIL)){
             if($password === $password_retype){
                 $password = password_hash($password, PASSWORD_DEFAULT);
                 $ip = $_SERVER['REMOTE_ADDR'];
