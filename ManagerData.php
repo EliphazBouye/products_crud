@@ -12,7 +12,9 @@ class ManagerData
         $this->pdo = (new Connect())->getPdo();
     }
 
-
+/*
+* @return All data on table
+*/
     public function findAll()
     {
         $query = "SELECT * FROM products ORDER BY id DESC";
